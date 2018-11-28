@@ -186,13 +186,4 @@ const abecedario = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 
     bbd.forEach(function (valorActual) {
         const cont = 0;
         abecedario.forEach(function (value) {
-            
-            if (calorActual.name.substr(0, 1) === value) {
-                arregloRes.push(value + ':' + true);
-                cont = 1;
-            }
-            else if (cont === 0) {
-                arregloRes.push(value + ':' + false);
-            }
-        });
-    });
+    
