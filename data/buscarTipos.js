@@ -1,7 +1,6 @@
 // 1) Busque los tipos de "gender" en el arreglo `people.json`
 
 const fs = require('fs');
-var map = require('rxjs/operators').map;
 
 function gender() {
     return new Promise(
@@ -27,20 +26,7 @@ function gender() {
 buscarGender()
     .then(
         (contenidoArchivo)=>{
-            console.log('gender',contenidoArchivo);
-            contenidoArchivo.map(
-                (persons)=> {
-                    if (persons === 'male') {
-                        maleArreglo.push(persons);
-                        console.log(maleArreglo);
-                    }else{
-                        if(persons === 'female'){
-                            femaleArreglo.push(persons);
-                            console.log(femaleArreglo);
-                        }
-                    }
-                }
-            )
+            console.log(contenidoArchivo);
         }
     )
     .catch(
@@ -82,7 +68,7 @@ function eye_color() {
 eye_color()
     .then(
         (contArchivo)=>{
-            console.log('eye_color',contArchivo);
+            console.log(contArchivo);
         }
     )
     .catch(
@@ -117,7 +103,7 @@ function skin_color() {
 skin_color()
     .then(
         (contArchivo)=>{
-            console.log('skin_color',contArchivo);
+            console.log(contArchivo);
         }
     )
     .catch(
@@ -152,7 +138,7 @@ function hair_color() {
 hair_color()
     .then(
         (contArchivo)=>{
-            console.log('hair_color',contArchivo);
+            console.log(contArchivo);
         }
     )
     .catch(
@@ -164,26 +150,122 @@ hair_color()
 // 5) Clasifique y cree diferentes arreglos dependiendo del gender, eye_color, skin y hair_color.
 //   EJ: Si hay gender `Male` y `Female`, existirian 2 arreglos, llenar esos arreglos con los caracteres que sean `Male` y `Female`
 
-    const basesita = JSON.parse(contenidoArchivo);
-    basesita.map(function (resultado) {
-        return resultado.gender;
-    }).forEach(function (resultadoNue) {
+function ClasificarGender() {
+    return new Promise(
+        (resolve, reject) => {
+            fs.readFile('people.json', 'utf-8',
+                (err, contenido) => {
+                    if (err) {
+                        reject({mensaje: 'Error',err});
+                    } else {
+                        const basesita = JSON.parse(contenido);
+                        const encontrarPer = bdd.persons
+                            .map(
+                                (people)=>{
+                                    return  people.gender;
+                                }
+                            )
+                        resolve(encontrarPer);
+                    }
+                });
+        }
+    );
+}
 
-        var respuestafilter = resultadoNuev.forEach(function (caracterNom) {
-            return caracterNom;
-        });
+var arregloFemale = []
+var arregloMale = []
 
-        console.log(respuestafilter);
-    });
-});
+buscarGender()
+    .then(
+        (contenidoArchivo)=>{
+            contenidoArchivo.map(
+                (personas)=>{
+                    if (personas === 'male'){
+                        arregloMale.push(personas);
+                        console.log(arregloMale);
+                    }else{(personas ==='female')
+                        arregloFemale.push(personas);
+                        console.log(arregloFemale);
+                    }
+                }
+            );
+        }
+    )
+    .catch(
+        (resultadoError)=>{
+            console.log('Mal',resultadoError);
+        }
+    );
 
 // ## 6) Cree un arreglo del abecedario, revisar si existe al menos un personaje con cada letra del abecedario.
 
 const abecedario = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
 
-    const basesita = JSON.parse(contenidoArchivo);
-    bbd.forEach(function (valorActual) {
-        const cont = 0;
-        abecedario.forEach(function (value) {
-    
+function buscarAbeced() {
+    return new Promise(
+        (resolve, reject) => {
+            fs.readFile('people.json', 'utf-8',
+                (err, contenido) => {
+                    if (err) {
+                        reject({mensaje: 'Error leyendo'});
+                    } else {
+                        const bdd = JSON.parse(contenido);
+                        const respuestaFind = bdd.persona.map(
+                                (people)=>{
+                                    return  people.name;
+                                }
+                            )
+
+                        resolve(respuestaFind);
+                    }
+                });
+        }
+    );
+}
+buscarAbeced()
+    .then(
+        (contenidoArchivo)=>{
+            console.log(contenidoArchivo)
+            contenidoArchivo.map(
+                (usuarios)=>{
+                    if(usuarios === 'a'){
+                        console.log('true');
+                    }else if (usuarios === 'b') {
+                        console.log('true');
+                    }else if (usuarios === 'c') {
+                        console.log('true');
+                    }else if (usuarios === 'd') {
+                        console.log('true');
+                    }else if (usuarios === 'e') {
+                        console.log('true');
+                    }else if (usuarios === 'f') {
+                        console.log('true');
+                    }else if (usuarios === 'g') {
+                        console.log('true');
+                    }else if (usuarios === 'h') {
+                        console.log('true');
+                    }else if (usuarios === 'i') {
+                        console.log('true');
+                    }else if (usuarios === 'j') {
+                        console.log('true');
+                    }else if (usuarios === 'k') {
+                        console.log('true');
+                    }else if (usuarios === 'l') {
+                        console.log('true');
+                    }else if (usuarios === 'm') {
+                        console.log('true');
+                    }else if (usuarios === 'n') {
+                        console.log('true');
+                    }else{
+                        console.log('false');
+                    }
+                }
+            )
+        }
+    )
+    .catch(
+        (resultadoError)=>{
+            console.log('Algo malo paso',resultadoError);
+        }
+    )
